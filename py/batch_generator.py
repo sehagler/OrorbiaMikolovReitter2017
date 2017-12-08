@@ -14,7 +14,7 @@ import numpy as np
 class batch_generator(object):
     
     #
-    def __init__(self, tower, text, batch_size, num_unfoldings, vocabulary_size):
+    def __init__(self, display_info_flg, tower, text, batch_size, num_unfoldings, vocabulary_size):
         
         #
         self._batch_size = batch_size
@@ -40,13 +40,14 @@ class batch_generator(object):
         self._last_batch = self._next_batch()
         
         #
-        print('     Tower: %d' % tower)
-        print('          Input Text Size: %d' % len(text))
-        print('          Cut Text Size: %d' % self._text_size)
-        print('          Subtext Size: %d' % self._sub_text_size)
-        print('          Dropped Text Size: %d' % self._dropped_text_size)
-        print('          Effective Batch Size: %d' % self._effective_batch_size)
-        print('          Number of Batches: %d' % self._num_batches)
+        if display_info_flg:
+            print('     Tower: %d' % tower)
+            print('          Input Text Size: %d' % len(text))
+            print('          Cut Text Size: %d' % self._text_size)
+            print('          Subtext Size: %d' % self._sub_text_size)
+            print('          Dropped Text Size: %d' % self._dropped_text_size)
+            print('          Effective Batch Size: %d' % self._effective_batch_size)
+            print('          Number of Batches: %d' % self._num_batches)
         
     def _next_batch(self):
         
